@@ -1,6 +1,6 @@
 extends Spatial
 
-onready var main = get_tree().get_node("Spatial")
+onready var main = get_tree().get_root().get_node("Spatial")
 onready var vr_origin = get_node("ARVROrigin")
 
 
