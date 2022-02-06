@@ -1,8 +1,7 @@
 extends Spatial
 
-
-var peer
-var vr_origin
+onready var main = get_tree().get_node("Spatial")
+onready var vr_origin = get_node("ARVROrigin")
 
 
 func _ready():
@@ -16,8 +15,6 @@ func _ready():
 
 	OS.vsync_enabled = false
 	Engine.target_fps = 90
-	
-	vr_origin = get_node("ARVROrigin")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -45,5 +42,5 @@ func _send_tracker_pos():
 				ARVRPositionalTracker.TRACKER_HAND_UNKNOWN:
 					tracker_arr.append(tracker.transform)
 			
-	rpc_unreliable("update_remote_tracker_pos", head_pos, lhand_pos, rhand_pos, tracker_arr)
+	main.rpc_unreliable("update_remote_tracker_pos", head_pos, lhand_pos, rhand_pos, tracker_arr)
 

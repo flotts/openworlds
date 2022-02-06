@@ -71,7 +71,7 @@ func _user_disconnected(id):
 # Callback from SceneTree, only for clients (not server).
 func _connected_ok():
 	var id = get_tree().get_network_unique_id()
-	client.set_network_master( id )
+	#client.set_network_master( id )
 	print("[INFO] Connected to server.")
 
 # Callback from SceneTree, only for clients (not server).
@@ -95,6 +95,6 @@ func try_connect(url: String):
 	else:
 		print("[INFO] Attempted connection to invalid IP.")
 
-puppet func update_remote_tracker_pos(head_pos, lhand_pos, rhand_pos, tracker_pos_arr):
+remote func update_remote_tracker_pos(head_pos, lhand_pos, rhand_pos, tracker_pos_arr):
 	var id = get_tree().get_rpc_sender_id()
 	players[id].update_transform(head_pos, lhand_pos, rhand_pos, tracker_pos_arr)
