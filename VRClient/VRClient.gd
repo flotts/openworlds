@@ -1,7 +1,6 @@
 extends Spatial
 
 onready var main = get_tree().get_root().get_node("Spatial")
-onready var vr_origin = get_node("ARVROrigin")
 
 
 func _ready():
@@ -30,7 +29,7 @@ func _send_tracker_pos():
 	var lhand_pos
 	var rhand_pos
 	var tracker_arr = []
-	for tracker in vr_origin.get_children():
+	for tracker in $ARVROrigin.get_children():
 		if tracker is ARVRCamera:
 			head_pos = tracker.transform
 		elif tracker is ARVRController:
