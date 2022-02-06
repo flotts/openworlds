@@ -10,7 +10,6 @@ var current_world
 
 var default_world = load("res://DefaultAssets/DefaultWorld.tscn")
 var player_scene = load("res://TestPlayer.tscn")
-var VRClient_scene = load("res://VRClient/VRClient.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -34,11 +33,12 @@ func _ready():
 		print("[INFO] Starting server...")
 		peer.create_server(port, max_peers)
 		get_tree().set_network_peer(peer)
-		print("[INFO] Server running on port " + port)
+		print("[INFO] Server running on port " + str(port))
 		
 	else:
 		is_server = false
 		
+		var VRClient_scene = load("res://VRClient/VRClient.tscn")
 		client = VRClient_scene.instance()
 		add_child(client)
 		
@@ -55,19 +55,23 @@ func _ready():
 #	pass
 
 
-func _player_connected(id):
+func _user_connected(id):
 	# Spawn a scene for this player
 	players[id] = player_scene.instance()
 	add_child(players[id])
+	print("[INFO] Player " + str(id) + " connected.")
 
-func _player_disconnected(id):
+func _user_disconnected(id):
 	# Destroy the player's scene
 	players[id].queue_free()
 	players.erase(id)
+	print("[INFO] Player " + str(id) + " disconnected.")
 	
 
 # Callback from SceneTree, only for clients (not server).
 func _connected_ok():
+	var id = get_tree().get_network_unique_id()
+	client.set_network_master( id )
 	print("[INFO] Connected to server.")
 
 # Callback from SceneTree, only for clients (not server).
@@ -81,6 +85,8 @@ func _connected_fail():
 	print("[INFO] Failed to connect to server.")
 
 func try_connect(url: String):
+	# Assert this is a client?
+	
 	if url.is_valid_ip_address():
 		var peer = NetworkedMultiplayerENet.new()
 		print("[INFO] Connecting to server ...")
