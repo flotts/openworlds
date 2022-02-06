@@ -16,8 +16,12 @@ func _ready():
 #	pass
 
 func update_transform(head_pos, lhand_pos, rhand_pos, tracker_pos_arr):
-	get_node("Head").transform = head_pos
-	get_node("Left_Hand").transform = lhand_pos
-	get_node("Right_Hand").transform = rhand_pos
+	if head_pos:
+		get_node("Head").transform = head_pos
+	if lhand_pos:
+		get_node("Left_Hand").transform = lhand_pos
+	if rhand_pos:
+		get_node("Right_Hand").transform = rhand_pos
 	for tracker in range(tracker_pos_arr.size()):
-		get_node("Trackers").get_children()[tracker] = tracker_pos_arr[tracker]
+		if tracker_pos_arr[tracker]:
+			get_node("Trackers").get_children()[tracker] = tracker_pos_arr[tracker]
