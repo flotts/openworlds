@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://GUI/ServerGUI.tscn" type="PackedScene" id=1]
+[ext_resource path="res://VRClient/steamVR_controller.tscn" type="PackedScene" id=2]
+[ext_resource path="res://VRClient/VRClient.gd" type="Script" id=4]
+
+[node name="VRClient" type="Spatial"]
+script = ExtResource( 4 )
+
+[node name="ARVROrigin" type="ARVROrigin" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.177, 0 )
+
+[node name="Player_Camera" type="ARVRCamera" parent="ARVROrigin"]
+current = true
+
+[node name="SteamVRController" parent="ARVROrigin" instance=ExtResource( 2 )]
+
+[node name="SteamVRController2" parent="ARVROrigin" instance=ExtResource( 2 )]
+controller_id = 2
+
+[node name="SteamVRController3" parent="ARVROrigin" instance=ExtResource( 2 )]
+controller_id = 3
+
+[node name="SteamVRController4" parent="ARVROrigin" instance=ExtResource( 2 )]
+controller_id = 4
+
+[node name="SteamVRController5" parent="ARVROrigin" instance=ExtResource( 2 )]
+controller_id = 5
+
+[node name="ServerPanel" parent="ARVROrigin" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.8576, 1.07916, 0 )
