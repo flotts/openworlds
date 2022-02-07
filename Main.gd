@@ -9,7 +9,7 @@ var client = null
 var current_world
 
 var default_world = preload("res://DefaultAssets/DefaultWorld.tscn")
-var player_scene = preload("res://TestPlayer.tscn")
+var player_scene = preload("res://RemotePlayer/TestPlayer.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -72,6 +72,14 @@ remote func update_remote_tracker_pos(head_pos, lhand_pos, rhand_pos, tracker_po
 	var id = get_tree().get_rpc_sender_id()
 	players[id].update_transform(head_pos, lhand_pos, rhand_pos, tracker_pos_arr)
 
+# Remote player added a tracker
+remote func remote_tracker_activated(tracker_id):
+	pass
+
+# Remote player removed a tracker
+remote func remote_tracker_deactivated(tracker_id):
+	pass
+
 
 
 ## CLIENTSIDE CONNECT / DISCONNECT
@@ -126,8 +134,9 @@ remote func request_change_world(url):
 	$HTTPRequest.set_download_file("temp/world.pck")
 	var err = $HTTPRequest.request(url)
 	if err:
-		print("[INFO] User requested world at " + url + ", but it couldn't be downloaded.")
+		print("[INFO] User " + str(id) + " requested world at " + url + ", but it couldn't be downloaded.")
 		return
+	print("[INFO] User " + str(id) + " changed world to " + url + ", downloading...")
 		
 	# Tell the clients to download it as well (maybe just transfer them the file after instead?)
 	rpc("on_world_change", url)
@@ -138,15 +147,17 @@ remote func on_world_change(url):
 	$HTTPRequest.set_download_file("temp/world.pck")
 	var err = $HTTPRequest.request(url)
 	if err:
-		print("[Error] Server changed to world at " + url + ", but it couldn't be downloaded.")
+		print("[ERROR] Server changed to world at " + url + ", but it couldn't be downloaded.")
 		get_tree().set_network_peer(null) # Just disconnect I guess
 		return
-		
+	print("[INFO] Server changed worlds, downloading from " + url + " ...")
+	
 	# Change to a loading world?
 
 
 # We're done downloading a world
 func _on_request_completed(result, response_code, headers, body):
+	print("[INFO] Request finished: " + str(result) + "\t" + str(headers))
 	# Not sure how to load the world so that the server and all clients are synced
 	var success = ProjectSettings.load_resource_pack("res://temp/world.pck") #This may replace files
 	
@@ -155,3 +166,13 @@ func _on_request_completed(result, response_code, headers, body):
 	remove_child(current_world)
 	current_world = load("res://world.tscn").instance()
 	add_child(current_world)
+
+
+
+## AVATAR LOADING
+
+# Clientside; user is changing avatar
+func change_avatar(path):
+	# Move to res folder?
+	
+	client.load_avatar(path)

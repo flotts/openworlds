@@ -114,6 +114,10 @@ config/name="Openworlds"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/Godot-MToon-Shader/plugin.cfg", "res://addons/vrm/plugin.cfg" )
+
 [gdnative]
 
 singletons=[ "res://addons/godot-openvr/godot_openvr.gdnlib" ]

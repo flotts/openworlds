@@ -1,6 +1,7 @@
 extends ARVRController
 
 signal controller_activated(controller)
+signal controller_deactivated(controller)
 
 var ovr_render_model
 var components = Array()
@@ -33,6 +34,9 @@ func load_controller_mesh(controller_name):
 
 func _process(delta):
 	if !get_is_active():
+		if visible:
+			emit_signal("controller_deactivated", self)
+		
 		visible = false
 		return
 	
@@ -44,7 +48,7 @@ func _process(delta):
 	
 	# became active? lets handle it...
 	var controller_name = get_controller_name()
-	print("Controller " + controller_name + " became active")
+	print("[INFO] Controller " + controller_name + " became active")
 			
 	# attempt to load a mesh for this
 	$Controller_mesh.mesh = load_controller_mesh(controller_name)
