@@ -79,6 +79,11 @@ _global_script_classes=[ {
 "language": "NativeScript",
 "path": "res://addons/godot_gltf/GLTFTexture.gdns"
 }, {
+"base": "Node",
+"class": "Network",
+"language": "GDScript",
+"path": "res://addons/godot-voip/demo/Network.gd"
+}, {
 "base": "",
 "class": "PackedSceneGLTF",
 "language": "NativeScript",
@@ -88,6 +93,21 @@ _global_script_classes=[ {
 "class": "VRMTopLevel",
 "language": "GDScript",
 "path": "res://addons/vrm/vrm_toplevel.gd"
+}, {
+"base": "Node",
+"class": "VoiceInstance",
+"language": "GDScript",
+"path": "res://addons/godot-voip/scripts/voice_instance.gd"
+}, {
+"base": "AudioStreamPlayer",
+"class": "VoiceMic",
+"language": "GDScript",
+"path": "res://addons/godot-voip/scripts/voice_mic.gd"
+}, {
+"base": "Node",
+"class": "VoiceOrchestrator",
+"language": "GDScript",
+"path": "res://addons/godot-voip/scripts/voice_orchestrator.gd"
 } ]
 _global_script_class_icons={
 "EditorSceneImporterGLTF": "",
@@ -104,8 +124,12 @@ _global_script_class_icons={
 "GLTFSpecGloss": "",
 "GLTFState": "",
 "GLTFTexture": "",
+"Network": "",
 "PackedSceneGLTF": "",
-"VRMTopLevel": ""
+"VRMTopLevel": "",
+"VoiceInstance": "",
+"VoiceMic": "",
+"VoiceOrchestrator": ""
 }
 
 [application]

@@ -2,11 +2,17 @@ extends StaticBody
 
 
 onready var _viewport = get_child(0)
-
+var ws = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
+
+func apply_world_scale():
+	var new_ws = ARVRServer.world_scale
+	if (new_ws and ws != new_ws):
+		ws = new_ws
+		self.scale = Vector3(ws, ws, ws)
 
 # Send player's keyboard input to the viewport
 func _input(event):
@@ -14,5 +20,6 @@ func _input(event):
 		_viewport.input(event)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	
+	apply_world_scale()

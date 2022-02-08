@@ -16,19 +16,29 @@ func _ready():
 func _process(_delta):
 	# Make sure we're only updating position if there's a camera active
 	if active_camera:
-		# THIS TRANSFORM DOES NOT WORK AT ALL ANGLES
-		var new_translation = active_camera.translation
-		new_translation.x = 2*self.translation.x - new_translation.x
-		mirror_camera.translation = new_translation
+		var plane_normal = -self.get_global_transform().basis.z.normalized()
+		var camera_facing = -active_camera.get_global_transform().basis.z
+		mirror_camera.translation = reflect_point_3d(self.translation, plane_normal, active_camera.translation)
 
+		# This part don't work yet for all angles lol
 		var new_rotation = active_camera.rotation
 		new_rotation.y = -new_rotation.y
+		new_rotation.z = -new_rotation.z
 		mirror_camera.rotation = new_rotation
 		
-	elif get_tree().get_root().get_node("Spatial").client:
+	elif get_tree().get_root().get_node("Spatial").client and ARVRServer.primary_interface:
+		$Viewport.size = ARVRServer.primary_interface.get_render_targetsize()
 		active_camera = get_tree().get_root().get_node("Spatial").client.get_node("ARVROrigin").get_node("Player_Camera")
 		
+		#mirror_camera.fov = $Viewport.size.
 
+func reflect_point_3d(plane_point, plane_normal, source_point):
+	var to_plane = plane_point - source_point
+	var to_closest_point = plane_normal * (to_plane.dot(plane_normal)) # Assuming plane_normal is normalized
+	return source_point + 2*to_closest_point
+
+func raycast_plane(plane_point, plane_normal, line_point, line_dir):
+	pass
 
 # Ripped from https://github.com/godotengine/godot-proposals/issues/1302#issuecomment-753432717
 func find_viewport_3d(node: Node, recursive_level):
