@@ -173,6 +173,5 @@ func _on_request_completed(result, response_code, headers, body):
 
 # Clientside; user is changing avatar
 func change_avatar(path):
-	# Move to res folder?
 	
 	client.load_avatar(path)
