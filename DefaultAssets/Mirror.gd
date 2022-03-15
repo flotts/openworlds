@@ -30,7 +30,7 @@ func update_camera_pos():
 		$Viewport.size = ARVRServer.primary_interface.get_render_targetsize()
 		# $Viewport.arvr = true
 		$MirrorSurface.get_surface_material(0).set_shader_param("is_arvr", true)
-		active_camera = get_tree().get_root().get_node("Spatial").client.get_node("ARVROrigin").get_node("Player_Camera")
+		active_camera = get_tree().get_root().get_node("Spatial").client.head
 		
 		mirror_camera.fov = 104 # Testing with quest
 

@@ -28,7 +28,7 @@ shader = ExtResource( 3 )
 shader_param/is_arvr = null
 shader_param/mirror_texture = SubResource( 12 )
 
-[node name="Spatial" type="Spatial"]
+[node name="World" type="Spatial"]
 
 [node name="Floor_Main" type="MeshInstance" parent="."]
 transform = Transform( 40, 0, 0, 0, 1, 0, 0, 0, 40, 0, -0.828144, 0 )
@@ -64,7 +64,7 @@ keep_3d_linear = true
 render_target_update_mode = 3
 
 [node name="Camera" type="Camera" parent="Mirror/Viewport"]
-transform = Transform( 0.311749, -0.0273144, 0.949772, 0, 0.999587, 0.028747, -0.950165, -0.00896186, 0.31162, 7.32272, 2.07359, 2.03836 )
+transform = Transform( 0.311767, -0.0273142, 0.949766, 0, 0.999587, 0.028747, -0.950159, -0.00896238, 0.311638, 7.3227, 2.07359, 2.03843 )
 
 [node name="CameraTracker" type="Spatial" parent="Mirror"]
-transform = Transform( 0.118771, -0.00112023, 0.0389525, 0, 0.249897, 0.00718676, 0.311749, 0.0273144, -0.949772, 0.254795, 0.0227993, -4.32272 )
+transform = Transform( 0.11877, -0.0011203, 0.0389548, 0, 0.249897, 0.00718676, 0.311767, 0.0273142, -0.949766, 0.254804, 0.0227993, -4.3227 )

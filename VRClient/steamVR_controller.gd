@@ -4,7 +4,6 @@ signal controller_activated(controller)
 signal controller_deactivated(controller)
 
 var ovr_render_model
-var components = Array()
 var ws = 0
 
 enum ControllerType {HAND_CONTROLLER, BODY_TRACKER}

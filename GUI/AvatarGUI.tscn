@@ -43,3 +43,5 @@ shape = SubResource( 2 )
 transform = Transform( 2, 0, -8.74228e-08, 0, 2, 0, 1.74846e-07, 0, 1, 0, 0, 0 )
 mesh = SubResource( 1 )
 material/0 = SubResource( 4 )
+
+[connection signal="on_change_avatar" from="Viewport/Control/AvatarPanel" to="." method="on_change_avatar"]

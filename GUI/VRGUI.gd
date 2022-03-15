@@ -1,7 +1,10 @@
 extends StaticBody
 
+signal on_server_connect(ip)
+signal on_change_avatar(path)
+signal on_change_world(url)
 
-onready var _viewport = get_child(0)
+onready var _viewport = get_node("Viewport")
 var ws = null
 
 # Called when the node enters the scene tree for the first time.
@@ -23,3 +26,15 @@ func _input(event):
 func _process(delta):
 	
 	apply_world_scale()
+
+
+func on_server_connect(ip):
+	emit_signal("on_server_connect", ip)
+
+
+func on_change_avatar(path):
+	emit_signal("on_change_avatar", path)
+
+
+func on_change_world(url):
+	emit_signal("on_change_world", url)

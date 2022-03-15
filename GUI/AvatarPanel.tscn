@@ -23,9 +23,9 @@ dialog_hide_on_ok = true
 mode = 0
 access = 2
 filters = PoolStringArray( "*.vrm", "*.pck" )
-current_dir = "/Users/facade/Desktop"
+current_dir = "/Users/facade/Documents/Github/openworlds"
 current_file = "Desktop"
-current_path = "/Users/facade/Desktop/Desktop"
+current_path = "/Users/facade/Documents/Github/openworlds/Desktop"
 __meta__ = {
 "_edit_use_anchors_": false
 }
