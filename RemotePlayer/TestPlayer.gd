@@ -3,7 +3,7 @@ extends Spatial
 
 onready var trackers = $Trackers.get_children()
 
-var ws
+# var ws
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

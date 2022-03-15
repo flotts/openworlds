@@ -1,11 +1,11 @@
 extends Spatial
 
 var DEFAULT_PORT = 8777
-var DEFAULT_MAX_PEERS = 80
 
 var is_server: bool
 var players = {}
 var client = null
+var server = null
 var current_world
 
 var default_world = preload("res://DefaultAssets/DefaultWorld.tscn")
@@ -21,19 +21,9 @@ func _ready():
 	if OS.has_feature("Server") or "--server" in OS.get_cmdline_args():
 		is_server = true
 		
-		var port = DEFAULT_PORT
-		if "--port" in OS.get_cmdline_args():
-			pass
-		
-		var max_peers = DEFAULT_MAX_PEERS
-		if "--max-users" in OS.get_cmdline_args():
-			pass
-		
-		var peer = NetworkedMultiplayerENet.new()
-		print("[INFO] Starting server...")
-		peer.create_server(port, max_peers)
-		get_tree().set_network_peer(peer)
-		print("[INFO] Server running on port " + str(port))
+		var server_scene = load("res://Server.tscn")
+		server = server_scene.instance()
+		add_child(server)
 		
 	else:
 		is_server = false
@@ -174,4 +164,4 @@ func _on_request_completed(result, response_code, headers, body):
 # Clientside; user is changing avatar
 func change_avatar(path):
 	
-	client.load_avatar(path)
+	client.begin_load_avatar(path)

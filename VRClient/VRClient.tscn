@@ -1,13 +1,17 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://GUI/ServerGUI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://VRClient/steamVR_controller.tscn" type="PackedScene" id=2]
 [ext_resource path="res://GUI/AvatarGUI.tscn" type="PackedScene" id=3]
 [ext_resource path="res://VRClient/VRClient.gd" type="Script" id=4]
 [ext_resource path="res://GUI/WorldGUI.tscn" type="PackedScene" id=5]
+[ext_resource path="res://addons/godot-voip/scripts/voice_orchestrator.gd" type="Script" id=6]
 
 [node name="VRClient" type="Spatial"]
 script = ExtResource( 4 )
+
+[node name="VoiceOrchestrator" type="Node" parent="."]
+script = ExtResource( 6 )
 
 [node name="ARVROrigin" type="ARVROrigin" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.177, 0 )
