@@ -5,9 +5,9 @@ onready var mirror_camera = $Viewport/Camera
 var active_camera = null
 
 func _ready():
-	print("[DEBUG] Setting up mirror...")
 	var viewport
 	if Engine.editor_hint:
+		print("[DEBUG] Setting up editor mirror...")
 		viewport = find_viewport_3d(get_node("/root/EditorNode"), 0)
 		$Viewport.size = viewport.size
 		active_camera = viewport.get_child(0)
@@ -26,11 +26,12 @@ func update_camera_pos():
 		mirror_camera.global_transform = $CameraTracker.global_transform
 		mirror_camera.global_transform.basis.x *= -1
 		
-	elif get_tree().get_root().get_node("Spatial").client and ARVRServer.primary_interface:
+	elif get_tree().get_root().get_node("Spatial").get_node("Peer").get_node("You") and ARVRServer.primary_interface:
+		print("[DEBUG] Setting up VR mirror...")
 		$Viewport.size = ARVRServer.primary_interface.get_render_targetsize()
 		# $Viewport.arvr = true
 		$MirrorSurface.get_surface_material(0).set_shader_param("is_arvr", true)
-		active_camera = get_tree().get_root().get_node("Spatial").client.head
+		active_camera = get_tree().get_root().get_node("Spatial").get_node("Peer").head
 		
 		mirror_camera.fov = 104 # Testing with quest
 

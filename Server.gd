@@ -1,4 +1,5 @@
-extends "res://Client.gd"
+extends Peer
+class_name Server
 
 var DEFAULT_MAX_PEERS = 80
 

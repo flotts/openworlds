@@ -1,6 +1,8 @@
 extends Spatial
+class_name Peer
 
-# A client is something that keeps a list of players, and keeps track of them spatially.
+# A peer is something that keeps a list of players, and keeps track of them spatially.
+# This is the base class for Server and Client.
 
 var DEFAULT_WORLD = preload("res://DefaultAssets/DefaultWorld.tscn")
 var PLAYER_SCENE = preload("res://RemotePlayer/TestPlayer.tscn")

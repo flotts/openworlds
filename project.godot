@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Peer",
+"class": "Client",
+"language": "GDScript",
+"path": "res://Clients/Client.gd"
+}, {
+"base": "Client",
+"class": "DesktopClient",
+"language": "GDScript",
+"path": "res://Clients/DesktopClient.gd"
+}, {
 "base": "",
 "class": "EditorSceneImporterGLTF",
 "language": "NativeScript",
@@ -84,10 +94,25 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/godot-voip/demo/Network.gd"
 }, {
+"base": "Client",
+"class": "OVRClient",
+"language": "GDScript",
+"path": "res://Clients/OVRClient.gd"
+}, {
 "base": "",
 "class": "PackedSceneGLTF",
 "language": "NativeScript",
 "path": "res://addons/godot_gltf/PackedSceneGLTF.gdns"
+}, {
+"base": "Spatial",
+"class": "Peer",
+"language": "GDScript",
+"path": "res://Peer.gd"
+}, {
+"base": "Peer",
+"class": "Server",
+"language": "GDScript",
+"path": "res://Server.gd"
 }, {
 "base": "Spatial",
 "class": "VRMTopLevel",
@@ -110,6 +135,8 @@ _global_script_classes=[ {
 "path": "res://addons/godot-voip/scripts/voice_orchestrator.gd"
 } ]
 _global_script_class_icons={
+"Client": "",
+"DesktopClient": "",
 "EditorSceneImporterGLTF": "",
 "GLTFAccessor": "",
 "GLTFAnimation": "",
@@ -125,7 +152,10 @@ _global_script_class_icons={
 "GLTFState": "",
 "GLTFTexture": "",
 "Network": "",
+"OVRClient": "",
 "PackedSceneGLTF": "",
+"Peer": "",
+"Server": "",
 "VRMTopLevel": "",
 "VoiceInstance": "",
 "VoiceMic": "",
@@ -135,7 +165,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Openworlds"
-run/main_scene="res://Main.tscn"
+run/main_scene="res://Startup.tscn"
 config/icon="res://icon.png"
 
 [audio]

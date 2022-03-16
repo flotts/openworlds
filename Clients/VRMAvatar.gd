@@ -1,8 +1,8 @@
 extends Node
 
 onready var VRM_LOADER = preload("res://addons/vrm/vrm_loader.gd").new()
+onready var peer = get_node("../..")
 
-export var user_height = 1.8
 var current_avatar: Spatial
 var loader_thread = Thread.new()
 
@@ -37,7 +37,7 @@ func finish_loading_avatar(new_avatar):
 	var skel = current_avatar.find_node("Skeleton") #Not sure where the viewpoint is?
 	var head_idx = find_head_bone(skel)
 	var head_height = skel.get_bone_global_pose(head_idx).origin.y
-	ARVRServer.world_scale = head_height/user_height
+	ARVRServer.world_scale = head_height / peer.user_height
 	
 	print("[INFO] Avatar loaded.")
 
