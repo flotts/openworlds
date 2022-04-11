@@ -1,0 +1,185 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Peer",
+"class": "Client",
+"language": "GDScript",
+"path": "res://Clients/Client.gd"
+}, {
+"base": "Client",
+"class": "DesktopClient",
+"language": "GDScript",
+"path": "res://Clients/DesktopClient.gd"
+}, {
+"base": "",
+"class": "EditorSceneImporterGLTF",
+"language": "NativeScript",
+"path": "res://addons/godot_gltf/EditorSceneImporterGLTF.gdns"
+}, {
+"base": "",
+"class": "GLTFAccessor",
+"language": "NativeScript",
+"path": "res://addons/godot_gltf/GLTFAccessor.gdns"
+}, {
+"base": "",
+"class": "GLTFAnimation",
+"language": "NativeScript",
+"path": "res://addons/godot_gltf/GLTFAnimation.gdns"
+}, {
+"base": "",
+"class": "GLTFBufferView",
+"language": "NativeScript",
+"path": "res://addons/godot_gltf/GLTFBufferView.gdns"
+}, {
+"base": "",
+"class": "GLTFCamera",
+"language": "NativeScript",
+"path": "res://addons/godot_gltf/GLTFCamera.gdns"
+}, {
+"base": "",
+"class": "GLTFDocument",
+"language": "NativeScript",
+"path": "res://addons/godot_gltf/GLTFDocument.gdns"
+}, {
+"base": "",
+"class": "GLTFLight",
+"language": "NativeScript",
+"path": "res://addons/godot_gltf/GLTFLight.gdns"
+}, {
+"base": "Resource",
+"class": "GLTFMesh",
+"language": "NativeScript",
+"path": "res://addons/godot_gltf/GLTFMesh.gdns"
+}, {
+"base": "",
+"class": "GLTFNode",
+"language": "NativeScript",
+"path": "res://addons/godot_gltf/GLTFNode.gdns"
+}, {
+"base": "Resource",
+"class": "GLTFSkeleton",
+"language": "NativeScript",
+"path": "res://addons/godot_gltf/GLTFSkeleton.gdns"
+}, {
+"base": "Resource",
+"class": "GLTFSkin",
+"language": "NativeScript",
+"path": "res://addons/godot_gltf/GLTFSkin.gdns"
+}, {
+"base": "",
+"class": "GLTFSpecGloss",
+"language": "NativeScript",
+"path": "res://addons/godot_gltf/GLTFSpecGloss.gdns"
+}, {
+"base": "",
+"class": "GLTFState",
+"language": "NativeScript",
+"path": "res://addons/godot_gltf/GLTFState.gdns"
+}, {
+"base": "",
+"class": "GLTFTexture",
+"language": "NativeScript",
+"path": "res://addons/godot_gltf/GLTFTexture.gdns"
+}, {
+"base": "Node",
+"class": "Network",
+"language": "GDScript",
+"path": "res://addons/godot-voip/demo/Network.gd"
+}, {
+"base": "Client",
+"class": "OVRClient",
+"language": "GDScript",
+"path": "res://Clients/OVRClient.gd"
+}, {
+"base": "",
+"class": "PackedSceneGLTF",
+"language": "NativeScript",
+"path": "res://addons/godot_gltf/PackedSceneGLTF.gdns"
+}, {
+"base": "Spatial",
+"class": "Peer",
+"language": "GDScript",
+"path": "res://Peer.gd"
+}, {
+"base": "Peer",
+"class": "Server",
+"language": "GDScript",
+"path": "res://Server.gd"
+}, {
+"base": "Spatial",
+"class": "VRMTopLevel",
+"language": "GDScript",
+"path": "res://addons/vrm/vrm_toplevel.gd"
+}, {
+"base": "Node",
+"class": "VoiceInstance",
+"language": "GDScript",
+"path": "res://addons/godot-voip/scripts/voice_instance.gd"
+}, {
+"base": "AudioStreamPlayer",
+"class": "VoiceMic",
+"language": "GDScript",
+"path": "res://addons/godot-voip/scripts/voice_mic.gd"
+}, {
+"base": "Node",
+"class": "VoiceOrchestrator",
+"language": "GDScript",
+"path": "res://addons/godot-voip/scripts/voice_orchestrator.gd"
+} ]
+_global_script_class_icons={
+"Client": "",
+"DesktopClient": "",
+"EditorSceneImporterGLTF": "",
+"GLTFAccessor": "",
+"GLTFAnimation": "",
+"GLTFBufferView": "",
+"GLTFCamera": "",
+"GLTFDocument": "",
+"GLTFLight": "",
+"GLTFMesh": "",
+"GLTFNode": "",
+"GLTFSkeleton": "",
+"GLTFSkin": "",
+"GLTFSpecGloss": "",
+"GLTFState": "",
+"GLTFTexture": "",
+"Network": "",
+"OVRClient": "",
+"PackedSceneGLTF": "",
+"Peer": "",
+"Server": "",
+"VRMTopLevel": "",
+"VoiceInstance": "",
+"VoiceMic": "",
+"VoiceOrchestrator": ""
+}
+
+[application]
+
+config/name="Openworlds"
+run/main_scene="res://Startup.tscn"
+config/icon="res://icon.png"
+
+[audio]
+
+enable_audio_input=true
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/Godot-MToon-Shader/plugin.cfg", "res://addons/godot-voip/plugin.cfg" )
+
+[gdnative]
+
+singletons=[ "res://addons/godot-openvr/godot_openvr.gdnlib" ]
+
+[physics]
+
+common/enable_pause_aware_picking=true

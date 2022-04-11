@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Clients/OVRClient.tscn" type="PackedScene" id=1]
+[ext_resource path="res://DefaultAssets/DefaultWorld.tscn" type="PackedScene" id=2]
+[ext_resource path="res://RemotePlayer/TestPlayer.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Startup.tscn" type="PackedScene" id=4]
+
+[node name="Spatial" instance=ExtResource( 4 )]
+
+[node name="Player" parent="." index="0" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.985938, 0.909953 )
+
+[node name="World" parent="." index="1" instance=ExtResource( 2 )]
+
+[node name="Client" parent="." index="2" instance=ExtResource( 1 )]

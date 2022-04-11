@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://GUI/ServerGUI.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Peer.tscn" type="PackedScene" id=2]
+[ext_resource path="res://GUI/AvatarGUI.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Clients/VoiceManager.gd" type="Script" id=4]
+[ext_resource path="res://GUI/WorldGUI.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Clients/OVRClient.gd" type="Script" id=6]
+[ext_resource path="res://Clients/steamVR_controller.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Clients/VRMAvatar.tscn" type="PackedScene" id=8]
+
+[node name="Peer" instance=ExtResource( 2 )]
+script = ExtResource( 6 )
+
+[node name="VoiceManager" type="Node" parent="." index="1"]
+script = ExtResource( 4 )
+
+[node name="You" type="ARVROrigin" parent="." index="2"]
+
+[node name="Avatar" parent="You" index="0" instance=ExtResource( 8 )]
+
+[node name="PlayerCamera" type="ARVRCamera" parent="You" index="1"]
+
+[node name="SteamVRController" parent="You" index="2" instance=ExtResource( 7 )]
+
+[node name="SteamVRController2" parent="You" index="3" instance=ExtResource( 7 )]
+controller_id = 2
+
+[node name="SteamVRController3" parent="You" index="4" instance=ExtResource( 7 )]
+controller_id = 3
+
+[node name="SteamVRController4" parent="You" index="5" instance=ExtResource( 7 )]
+controller_id = 4
+
+[node name="SteamVRController5" parent="You" index="6" instance=ExtResource( 7 )]
+controller_id = 5
+
+[node name="ServerGUI" parent="You" index="7" instance=ExtResource( 1 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.266, 1, 0 )
+
+[node name="WorldGUI" parent="You" index="8" instance=ExtResource( 5 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1, 2.631 )
+
+[node name="AvatarGUI" parent="You" index="9" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -2.45568 )
+
+[connection signal="controller_activated" from="You/SteamVRController" to="." method="_on_SteamVRController_controller_activated"]
+[connection signal="controller_deactivated" from="You/SteamVRController" to="." method="_on_SteamVRController_controller_deactivated"]
+[connection signal="controller_activated" from="You/SteamVRController2" to="." method="_on_SteamVRController_controller_activated"]
+[connection signal="controller_deactivated" from="You/SteamVRController2" to="." method="_on_SteamVRController_controller_deactivated"]
+[connection signal="controller_activated" from="You/SteamVRController3" to="." method="_on_SteamVRController_controller_activated"]
+[connection signal="controller_deactivated" from="You/SteamVRController3" to="." method="_on_SteamVRController_controller_deactivated"]
+[connection signal="controller_activated" from="You/SteamVRController4" to="." method="_on_SteamVRController_controller_activated"]
+[connection signal="controller_deactivated" from="You/SteamVRController4" to="." method="_on_SteamVRController_controller_deactivated"]
+[connection signal="controller_activated" from="You/SteamVRController5" to="." method="_on_SteamVRController_controller_activated"]
+[connection signal="controller_deactivated" from="You/SteamVRController5" to="." method="_on_SteamVRController_controller_deactivated"]
+[connection signal="on_server_connect" from="You/ServerGUI" to="." method="on_server_connect"]
+[connection signal="on_change_world" from="You/WorldGUI" to="." method="on_change_world"]
+[connection signal="on_change_avatar" from="You/AvatarGUI" to="." method="on_change_avatar"]
